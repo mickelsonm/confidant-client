@@ -1,0 +1,16 @@
+{
+  "name": "confidant-client",
+  "version": "0.0.1",
+  "description": "confidant secret management client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Mickelson",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.2.19",
+    "moment": "^2.10.6",
+    "request": "^2.67.0"
+  }
+}

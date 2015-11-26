@@ -29,7 +29,12 @@ Second, you should call it like:
     var confidant = require('confidant-client');
     var resp = confidant.get_service(config);
 
->> Note: If successful, resp should have different properties/values.
+>> Note: From here you will use the response how you see fit.
+
+Note about AWS settings:
+
+AWS KMS settings are defaulting to whatever it is on your local system. In the future,
+logic would have to be added to extend this behavior.
 
 ## How to contribute?
 
@@ -37,4 +42,4 @@ Please fork this repository, make your code changes, and submit a pull request.
 
 ## License
 
-This project uses MIT, but see Lyft's Confidant project for more specifics.
+This project uses MIT, but see Lyft's [Confidant](http://lyft.github.io/confidant/) project for more specifics.
