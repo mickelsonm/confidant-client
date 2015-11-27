@@ -13,7 +13,7 @@ config object properties:
 - url (string): URL of the confidant server
 **/
 
-function get_service(config) {
+module.exports = function get_service(config) {
   var ret = {
     'result': false
   };
@@ -61,4 +61,4 @@ function get_service(config) {
   });
 
   return ret;
-}
+};
