@@ -1,8 +1,16 @@
 {
   "name": "confidant-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "confidant secret management client",
-  "repository": "https://github.com/mickelsonm/confidant-client",
+  "keywords": [
+    "confidant",
+    "client",
+    "aws-kms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mickelsonm/confidant-client"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
