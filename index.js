@@ -3,6 +3,8 @@ var kms = new AWS.KMS();
 var moment = require('moment');
 var request = require('request');
 
+var confidant = {};
+
 /**
 config object properties:
 
@@ -12,8 +14,7 @@ config object properties:
 - to_context (string): IAM role of the Confidant server
 - url (string): URL of the confidant server
 **/
-
-module.exports = function get_service(config) {
+confidant.get_service = function(config) {
   var ret = {
     'result': false
   };
