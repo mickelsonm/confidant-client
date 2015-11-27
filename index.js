@@ -1,9 +1,22 @@
 var AWS = require('aws-sdk');
-var kms = new AWS.KMS();
+var kms = new AWS.KMS({
+  region: 'us-west-1'
+});
 var moment = require('moment');
 var request = require('request');
 
 var confidant = {};
+
+/**
+config properties:
+
+- aws_kms_region: specify the region used for kms
+**/
+confidant.config = function(config) {
+  kms = new AWS.KMS({
+    region: config.aws_kms_region
+  });
+};
 
 /**
 config object properties:
@@ -38,7 +51,7 @@ confidant.get_service = function(config) {
 
   kms.encrypt(params, function(err, data) {
     if (err) {
-      console.log(err, err.stack);
+      ret.error = err;
     } else {
       //constructs our token
       var token = new Buffer(data.CiphertextBlob).toString('base64');

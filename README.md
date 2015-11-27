@@ -6,7 +6,15 @@ The entire codebase was modeled after their [python-client example](https://gith
 
 ## How to use?
 
-First you need to construct your configuration object:
+First, you can obtain it via `npm install confidant-client`
+
+Next, setup your code like this (adjust yours to make yours fit):
+
+    var confidant = require('confidant-client');
+
+    confidant.config({
+      aws_kms_region: 'us-west-1'
+    })
 
     var config = {
       url: 'https://confidant-production.example.com',
@@ -16,6 +24,13 @@ First you need to construct your configuration object:
       token_lifetime: 1
     };
 
+    var resp = confidant.get_service(config);
+    console.log(resp);
+
+Confidant/AWS configuration properties:
+
+- aws_kms_region (string): the region to be used by AWS KMS
+
 Configuration object properties:
 
 - token_lifetime (int): token lifetime in minutes (defaults to 1)
@@ -23,18 +38,6 @@ Configuration object properties:
 - from_context (string): IAM role requesting secrets (our client/what uses this)
 - to_context (string): IAM role of the Confidant server
 - url (string): URL of the confidant server
-
-Second, you should call it like:
-
-    var confidant = require('confidant-client');
-    var resp = confidant.get_service(config);
-
->> Note: From here you will use the response how you see fit.
-
-Note about AWS settings:
-
-AWS KMS settings are defaulting to whatever it is on your local system. In the future,
-logic would have to be added to extend this behavior.
 
 ## How to contribute?
 
