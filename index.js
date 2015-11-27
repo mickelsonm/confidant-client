@@ -63,3 +63,5 @@ confidant.get_service = function(config) {
 
   return ret;
 };
+
+module.exports = confidant;

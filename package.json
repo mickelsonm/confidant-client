@@ -1,6 +1,6 @@
 {
   "name": "confidant-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "confidant secret management client",
   "repository": "https://github.com/mickelsonm/confidant-client",
   "main": "index.js",
