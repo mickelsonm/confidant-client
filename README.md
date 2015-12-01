@@ -10,22 +10,28 @@ First, you can obtain it via `npm install confidant-client`
 
 Next, setup your code like this (adjust yours to make yours fit):
 
+```javascript
     var confidant = require('confidant-client');
 
     confidant.config({
-      aws_kms_region: 'us-west-1'
+      aws_kms_region: 'us-west-2'
     })
 
     var config = {
       url: 'https://confidant-production.example.com',
-      auth_key: 'TOO_MANY_SECRETS',
+      auth_key: '0123abcd-1234-5678-a123-123a123b123c',
       from_context: 'myservice-production',
       to_context: 'confidant-production',
       token_lifetime: 1
     };
 
-    var resp = confidant.get_service(config);
-    console.log(resp);
+    confidant.get_service(config)
+    .then(function(resp){
+      console.log(resp);
+    }, function(err){
+      console.log(err);
+    })
+```
 
 Confidant/AWS configuration properties:
 
