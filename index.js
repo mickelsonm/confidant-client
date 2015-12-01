@@ -1,7 +1,5 @@
 var AWS = require('aws-sdk');
-var kms = new AWS.KMS({
-  region: 'us-west-1'
-});
+var kms = new AWS.KMS();
 var moment = require('moment');
 var request = require('request');
 
@@ -68,7 +66,7 @@ confidant.get_service = function(config) {
           ret.error = err;
           return;
         }
-        ret.service = resp.json();
+        ret.service = resp.body;
         ret.result = true;
       });
     }
