@@ -1,5 +1,6 @@
 var AWS = require('aws-sdk');
 var kms = new AWS.KMS();
+var Q = require('q');
 var moment = require('moment');
 var request = require('request');
 
@@ -26,9 +27,7 @@ config object properties:
 - url (string): URL of the confidant server
 **/
 confidant.get_service = function(config) {
-  var ret = {
-    'result': false
-  };
+  var d = Q.defer();
 
   var time_format = "YYYYMMDDTHHmmss";
   var now = moment();
@@ -49,7 +48,7 @@ confidant.get_service = function(config) {
 
   kms.encrypt(params, function(err, data) {
     if (err) {
-      ret.error = err;
+      d.reject(err);
     } else {
       //constructs our token
       var token = new Buffer(data.CiphertextBlob).toString('base64');
@@ -63,16 +62,18 @@ confidant.get_service = function(config) {
         }
       }, function(err, resp, body) {
         if (err) {
-          ret.error = err;
-          return;
+          d.reject(err);
+        } else {
+          d.resolve({
+            'service': resp.body,
+            'result': true
+          });
         }
-        ret.service = resp.body;
-        ret.result = true;
       });
     }
   });
 
-  return ret;
+  return d.promise;
 };
 
 module.exports = confidant;
